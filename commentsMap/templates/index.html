@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комментарии</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="text" id="" placeholder="Введите координаты">
+            <button type="submit">Поиск</button>
+        </form>
+        <table bolder="1" cellpadding="5" cellspacing="5">
+            <colgroup>
+                 <col span="4" style="background:Khaki">
+            </colgroup>
+            <tr>
+                <th>author</th>
+                <th>content</th>
+                <th>date</th>
+                <th>star</th>
+            </tr>
+        {% for value in comments.values %}
+            <tr>
+                <div>
+                    <td><h3>{{ value.author }}</h3></td>
+                    <td><h3>{{ value.content }}</h3></td>
+                    <td><h3>{{ value.date }}</h3></td>
+                    <td><h3>{{ value.stars }}</h3></td>
+                </div>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+    <a href="admin">Логин в админку</a>
+    {% endif %}
+</body>
+</html>
